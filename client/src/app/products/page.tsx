@@ -8,8 +8,8 @@ const ProductsPage = async ({
 }) => {
 	const category = (await searchParams).category
 	return (
-		<div className=''>
-			<ProductList category={category} />
+		<div className='pt-5'>
+			<ProductList category={category} params='products' />
 		</div>
 	)
 }
