@@ -7,6 +7,7 @@ import { ArrowRight, Trash2 } from 'lucide-react'
 import ShippingForm from '../../../components/forms/shipping-form'
 import { useState } from 'react'
 import PaymentForm from '../../../components/forms/payment-form'
+import { ShippingFormInputs } from '../../../lib/validation'
 
 const steps = [
 	{
@@ -83,7 +84,7 @@ const cartItems: CartItemsType = [
 const CartPage = () => {
 	const searchParams = useSearchParams()
 	const router = useRouter()
-	const [shippingFrom, setShippingFrom] = useState(null)
+	const [shippingForm, setShippingForm] = useState<ShippingFormInputs>()
 
 	const activeStep = parseInt(searchParams.get('step') || '1')
 	return (
@@ -119,7 +120,7 @@ const CartPage = () => {
 			{/* STEPS & DETAILS */}
 			<div className='w-full flex flex-col lg:flex-row gap-16'>
 				{/* STEPS */}
-				<div className='w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8'>
+				<div className='w-full lg:w-7/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8'>
 					{activeStep === 1 ? (
 						cartItems.map(item => (
 							// Single cart item
@@ -162,8 +163,8 @@ const CartPage = () => {
 							</div>
 						))
 					) : activeStep === 2 ? (
-						<ShippingForm />
-					) : activeStep === 3 && shippingFrom ? (
+						<ShippingForm setShippingForm={setShippingForm} />
+					) : activeStep === 3 && shippingForm ? (
 						<PaymentForm />
 					) : (
 						<p className='text-sm text-gray-500'>
@@ -172,7 +173,7 @@ const CartPage = () => {
 					)}
 				</div>
 				{/* DETAILS */}
-				<div className='w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max'>
+				<div className='w-full lg:w-5/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max'>
 					<h2 className='font-semibold'>Cart Details</h2>
 					<div className='flex flex-col gap-4'>
 						<div className='flex justify-between text-sm'>
