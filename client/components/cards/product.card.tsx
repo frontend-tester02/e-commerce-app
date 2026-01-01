@@ -5,12 +5,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { ProductType } from '../../types'
+import useCart from '../../hooks/use-cart'
+import { toast } from 'react-toastify'
 
 const ProductCard = ({ product }: { product: ProductType }) => {
 	const [productTypes, setProductTypes] = useState({
 		size: product.sizes[0],
 		color: product.colors[0],
 	})
+
+	const { addToCart } = useCart()
 
 	const handleProductType = ({
 		type,
@@ -25,13 +29,21 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 		}))
 	}
 
-	const handleAddToCart = () => {}
+	const handleAddToCart = () => {
+		addToCart({
+			...product,
+			quantity: 1,
+			selectedSize: productTypes.size,
+			selectedColor: productTypes.color,
+		})
+		toast.success('Product added to cart successfully!')
+	}
 
 	return (
 		<div className='shadow-lg rounded-lg overflow-hidden'>
 			{/* IMAGE */}
 			<Link href={`/products/${product.id}`}>
-				<div className='relative aspect-[2/3]'>
+				<div className='relative aspect-2/3'>
 					<Image
 						src={product.images[productTypes.color]}
 						alt={product.name}
@@ -70,7 +82,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 						<div className='flex items-center gap-2'>
 							{product.colors.map(color => (
 								<div
-									className={`cursor-pointer border-1 ${
+									className={`cursor-pointer border ${
 										productTypes.color === color
 											? 'border-gray-400'
 											: 'border-gray-200'
@@ -81,7 +93,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 									}
 								>
 									<div
-										className='w-[14px] h-[14px] rounded-full'
+										className='w-3.5 h-3.5 rounded-full'
 										style={{ backgroundColor: color }}
 									/>
 								</div>
@@ -106,4 +118,3 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 }
 
 export default ProductCard
-4
