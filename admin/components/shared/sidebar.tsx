@@ -7,8 +7,6 @@ import {
 	User2,
 	ChevronUp,
 	Plus,
-	Projector,
-	ChevronDown,
 	Shirt,
 	User,
 	ShoppingBasket,
@@ -26,9 +24,6 @@ import {
 	SidebarMenuBadge,
 	SidebarMenuButton,
 	SidebarMenuItem,
-	SidebarMenuSub,
-	SidebarMenuSubButton,
-	SidebarMenuSubItem,
 	SidebarSeparator,
 } from '../ui/sidebar'
 import Link from 'next/link'
@@ -39,17 +34,11 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
-import {
-	Collapsible,
-	CollapsibleContent,
-	CollapsibleTrigger,
-} from '../ui/collapsible'
 import { Sheet, SheetTrigger } from '../ui/sheet'
-import { Button } from '../ui/button'
-import EditUser from './edit-user'
 import AddOrder from './add-order'
 import AddUser from './add-user'
 import AddCategory from './add-category'
+import AddProduct from './add-product'
 
 const items = [
 	{
@@ -142,7 +131,7 @@ const AppSidebar = () => {
 												</Link>
 											</SidebarMenuButton>
 										</SheetTrigger>
-										<EditUser />
+										<AddProduct />
 									</Sheet>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
