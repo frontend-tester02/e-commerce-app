@@ -47,6 +47,9 @@ import {
 import { Sheet, SheetTrigger } from '../ui/sheet'
 import { Button } from '../ui/button'
 import EditUser from './edit-user'
+import AddOrder from './add-order'
+import AddUser from './add-user'
+import AddCategory from './add-category'
 
 const items = [
 	{
@@ -154,7 +157,7 @@ const AppSidebar = () => {
 												</Link>
 											</SidebarMenuButton>
 										</SheetTrigger>
-										<EditUser />
+										<AddCategory />
 									</Sheet>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
@@ -189,7 +192,7 @@ const AppSidebar = () => {
 												</Link>
 											</SidebarMenuButton>
 										</SheetTrigger>
-										<EditUser />
+										<AddUser />
 									</Sheet>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
@@ -224,7 +227,7 @@ const AppSidebar = () => {
 												</Link>
 											</SidebarMenuButton>
 										</SheetTrigger>
-										<EditUser />
+										<AddOrder />
 									</Sheet>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
